@@ -114,17 +114,59 @@ tasks:
 ```
 * `delegate_to` 指定特定的主机执行任务。
 ```yaml
-- command: /opt/application/upgrade_db.py
-  delegate_to: web01.example.org
+---
+# ...
+  tasks:
+    - command: rsync -a /path/to/source {{ inventory_hostname }}:/path/to/target
+      delegate_to: 127.0.0.1
+```
+使用local_action可以达到delegate_to同样的效果
+```yaml
+---
+# ...
+  tasks:
+    - name: Recursively copy files from management server to target
+      local_action: ansible.builtin.command rsync -a /path/to/files {{ inventory_hostname }}:/path/to/target/
 ```
 
 * 影响剧本执行的[其他一些关键字](https://docs.ansible.com/ansible/latest/reference_appendices/playbooks_keywords.html)`ignore_errors`、`ignore_unreachable`、`any_errors_fatal`、`max_fail_percentage（适用于linear strategy）`
 
-# 关键字timeout
-ansible版本2.10及以上支持`timeout`关键字，设置任务执行超时时间，可以解决playbook执行过程中hang住无返回的问题。
+# 关键字 timeout
+ansible版本2.10及以上支持在[Play、Role、Block、Task]设置`timeout`关键字，设置任务执行超时时间，可以解决playbook执行过程中hang住无返回的问题。
 
 # 条件判断 when
+* 在 playbook 里，根据 fact 里面的值，变量，或先前任务的输出结果，你或许想要执行不同的任务，或者有不同的目标。
+* 根据其它变量的值得到某些变量的值。
+* 根据主机是否符合某些条件匹配出新的主机组。
 
-# 模块wait_for、关键字action、local_action
+使用样例
+```yaml
+tasks:
+  - name: Shut down CentOS 6 and Debian 7 systems
+    ansible.builtin.command: /sbin/shutdown -t now
+    when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "6") or
+          (ansible_facts['distribution'] == "Debian" and ansible_facts['distribution_major_version'] == "7")
+```
+详情见 -> [Conditionals](https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html)
 
-# 性能优化（单独写还是放在此处）
+# 模块wait_for
+* 轮训端口（host:port)。
+* 查找文件是否存在（path)。
+* 在文件或socket连接中匹配字符串是否存在（search_regex）。
+* deplay: 在开始轮训之前等待的时间。
+* timeout：整个过程等待的时间。
+* state: 根据以下取值。
+> 检查文件或搜索字符串：present、absent。
+>
+> 检查端口：started、stopped、drained。
+
+使用样例
+```yaml
+- name: Wait for port 8000 to become open on the host, don't start checking for 10 seconds
+  ansible.builtin.wait_for:
+    port: 8000
+    delay: 10
+```
+
+详情见 -> [ansible.builtin.wait_for module ](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/wait_for_module.html#id1)
+
