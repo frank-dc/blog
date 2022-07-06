@@ -9,7 +9,7 @@
 - 工作年限：7年（5年运维2年开发）
 - GitHub：[https://github.com/frank-dc](https://github.com/frank-dc)
 - 期望职位：运维开发工程师
-- 期望薪资：32K+（详细面聊）
+- 期望薪资：(详细面聊)
 - 期望城市：上海
 
 # <img align="left" src="https://github.com/frank-dc/drawpics/blob/main/font/experience.png?raw=true" width="25" height="25" style="margin: 7px" />工作经历
