@@ -7,8 +7,12 @@
 * 丢弃重复数据报
 * 流量控制
 * 拥塞控制
-* ARQ协议
+* ARQ 协议
 * 超时重传
+
+## ARQ 协议（Automatic Repeat-reQuest)
+* 停止等待 ARQ 协议
+* 连续 ARQ 协议
 
 ## 拥塞控制协议
 * 慢开始
