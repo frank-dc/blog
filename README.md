@@ -1,8 +1,13 @@
 # technical summary docs
 
-## Ansible
-* [ansible 控制剧本执行的一些策略以及关键词](https://github.com/frank-dc/blog/blob/main/ansible/controlling_playbook_execution.md)
-* [ansible 常见性能优化](https://github.com/frank-dc/blog/blob/main/ansible/performance_improvement.md)
+## tool 
+### 1. ansible
+* [ansible 控制剧本执行的一些策略以及关键词](https://github.com/frank-dc/blog/blob/main/tool/ansible/controlling_playbook_execution.md)
+* [ansible 常见性能优化](https://github.com/frank-dc/blog/blob/main/tool/ansible/performance_improvement.md)
+
+### 2. cicd
+* [gitlab 升级](https://github.com/frank-dc/blog/blob/main/tool/cicd/gitlab_upgrade.mc)
+
 
 ## OS
 ### 1. linux

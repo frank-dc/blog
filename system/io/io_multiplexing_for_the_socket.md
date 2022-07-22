@@ -32,4 +32,4 @@ epoll 支持边缘触发[^2]和水平触发[^3]两种触发的方式，select/po
 
 
 ## 来源
-> [https://bbs.huaweicloud.com/blogs/279731](https://bbs.huaweicloud.com/blogs/279731)
+* [https://bbs.huaweicloud.com/blogs/279731](https://bbs.huaweicloud.com/blogs/279731)
