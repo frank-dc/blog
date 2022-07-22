@@ -6,7 +6,7 @@
 * [ansible 常见性能优化](https://github.com/frank-dc/blog/blob/main/tool/ansible/performance_improvement.md)
 
 ### 2. cicd
-* [gitlab 升级](https://github.com/frank-dc/blog/blob/main/tool/cicd/gitlab_upgrade.mc)
+* [gitlab 升级](https://github.com/frank-dc/blog/blob/main/tool/cicd/gitlab_upgrade.md)
 
 
 ## OS
