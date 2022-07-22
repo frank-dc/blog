@@ -21,6 +21,8 @@
 #### Redis
 * [Redis 为什么这么快？](https://github.com/frank-dc/blog/blob/main/system/store/redis/why_is_redis_so_fast.md)
 
+### 6. IO
+* [socket 网络模型的I/O 多路复用](https://github.com/frank-dc/blog/blob/main/system/io/io_multiplexing_for_the_socket.md)
 
 ## Program
 ### 1. shell
