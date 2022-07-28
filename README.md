@@ -30,6 +30,8 @@
 * [socket 网络模型的 I/O 多路复用](https://github.com/frank-dc/blog/blob/main/system/io/io_multiplexing_for_the_socket.md)
 
 ## Program
+* [计算机对浮点数的表示](https://github.com/frank-dc/blog/blob/main/program/understanding_float_point.md)
+
 ### 1. shell
 
 ### 2. python
