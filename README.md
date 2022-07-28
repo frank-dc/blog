@@ -33,6 +33,7 @@
 * [计算机对浮点数的表示](https://github.com/frank-dc/blog/blob/main/program/understanding_float_point.md)
 
 ### 1. shell
+* [set 命令](ttps://github.com/frank-dc/blog/blob/main/shell/the_use_of_set_command.md)
 
 ### 2. python
 #### 算法
