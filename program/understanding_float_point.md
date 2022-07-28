@@ -98,6 +98,7 @@ $$\frac{1}{2^{4}} + \frac{1}{2^{5}} + \frac{1}{2^{8}} + \frac{1}{2^{9}} + \frac{
 
 类似 0.2 采用单精度表示近似 0.20000000298023223876953125
 
+[在线浮点数表示网址](https://baseconvert.com/ieee-754-floating-point)
 
 ## 来源
 * [https://polarisxu.studygolang.com/posts/basic/diagram-float-point/](https://polarisxu.studygolang.com/posts/basic/diagram-float-point/)
