@@ -4,6 +4,7 @@
 IEEE二进制浮点数算数标准是20世界80年代依赖最广泛使用的浮点数运算标准，为许多CPU与浮点运算器所采用的。这个标准定义了表示浮点数的格式（包括负零）与反常值（denormal number)，一些特殊值（无穷infinity与非数值NaN)，有规定基数为2的状况等等。
 
 浮点数构成是指用符号、尾数、基数和指数这四部分来表示的小数。
+
 ![浮点数构成](https://github.com/frank-dc/drawpics/blob/main/the_structure_of_floating_point.png?raw=true)
 
 ```text
@@ -16,7 +17,7 @@ E: 表示指数部分，单精度浮点数占 23 比特，双进度浮点数占 
 
 十进制数 2.75 转成二进制数 10.11，根据 IEEE754，可以表示成 (-1)<sup>0</sup> x 1.011 x 2<sup>1</sup>
 
-十进制数 -0.75 转成二进制数 0.11， 根据 IEEE754，可以表示成 (-1)<sup>1</sup> x 1.1 x 2<sup>-1</sup>
+十进制数 -0.75 转成二进制数 -0.11， 根据 IEEE754，可以表示成 (-1)<sup>1</sup> x 1.1 x 2<sup>-1</sup>
 
 
 ## 浮点数的 IEEE754 表示
