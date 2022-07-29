@@ -52,3 +52,6 @@
 #### 爬虫
 * [爬电影top250](https://github.com/frank-dc/blog/blob/main/program/python/crawler/static_web/movies_top_250.py)
 ### 3. golang
+
+### 4. c
+* [C 语言学习](https://github.com/frank-dc/blog/blob/main/program/c/learning/README.md)
