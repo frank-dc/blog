@@ -61,3 +61,6 @@ int main() {
 ```
 
 代码块可以嵌套，内层代码块可以使用外层声明的变量，但外层不可以使用内层声明的变量。如果内层的变量与外层同名，那么会在当前作用域覆盖外层变量。
+
+## 来源
+* [https://wangdoc.com/clang/variable.html](https://wangdoc.com/clang/variable.html)
