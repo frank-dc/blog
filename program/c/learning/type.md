@@ -177,5 +177,8 @@ if (j > i)
 ```
 也是因为 unsigned int 不可能得到小于 0 的结果。
 
+
+## sizeof 运算符
+
 ## 来源
 * [https://wangdoc.com/clang/types.html#navbar](https://wangdoc.com/clang/types.html#navbar)
