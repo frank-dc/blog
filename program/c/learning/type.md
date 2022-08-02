@@ -179,6 +179,119 @@ if (j > i)
 
 
 ## sizeof 运算符
+`sizeof`是 C 语言提供的一个运算符，`返回`某种数据类型或某个值占用的`字节数量`。
+```c
+// 参数为数据类型
+sizeof(int);        // output: 4
+sizeof(char);       // output: 1
+sizeof(int64_t);    // output: 8
+
+// 参数为变量
+int x;
+sizeof(x);          // output: 4
+
+// 参数为数值
+sizeof(3.14);       // output: 8
+```
+
+## 类型的自动转换
+某些情况下，C 语言会自动转换某个值的类型。 
+> 赋值运算自动转换
+1. 浮点数赋值给整数变量。
+```c
+int x = 3.14;
+```
+C 语言会整个舍弃小数部分，而不是四舍五入。因此上面示例中，`x`的值是`3`。
+
+2. 整数赋值给浮点数变量。
+```c
+float y = 12 * 3;
+```
+上面示例中，变量`y`的值是`36.0`。
+
+3. 窄类型赋值给宽类型。
+
+4. 宽类型赋值给窄类型。
+```c
+int i = 321;
+char ch = i;
+printf("%c\n", ch)  // output: A
+```
+`i`（int 类型32比特）的二进制是 `00000000 00000000 00000001 01001011`
+
+因为`ch`（char 类型）为8比特，只能保留后面的八位`01001011`（十进制的 65，相当于字符`A`）。
+
+> 混合类型的运算自动转换
+1. 整数与浮点数混合运算时，整数转为浮点数类型。
+2. 不同的浮点数类型混合运算时，宽度较小的类型转为宽度较大的类型，比如`float`转为`double`。
+3. 不同的整数类型混合运算时，宽度较小的类型会提升为宽度较大的类型，比如`short`转为`int`，`int`转为`long`，`signed`转为`unsigned`。
+
+> 函数
+
+函数的参数和返回值，会自动转成函数定义里指定的类型。
+```c
+int dostuff(int, unsigned char);
+
+char m = 42;
+unsigned short n = 43;
+long long int c = dostuff(m, n);
+```
+上面示例中，参数变量m和n不管原来的类型是什么，都会转成函数dostuff()定义的参数类型。
+
+
+## 类型的显示转换
+C 语言提供了类型的显示转换，允许手动转换类型。
+
+只要在一个值或变量的前面，使用圆括号指定类型`(type)`。
+
+
+## 可移植类型
+C 语言的整数类型（short、int、long）在不同计算机上，占用的字节宽度可能是不一样的，无法提前知道他们到底占用多少个字节。
+
+头文件`stdint.h`创造了一些新的类型别名。
+1. 精确宽度整数类型（exact-width integer type），保证某个整数类型的宽度是确定的。
+```c
+int8_t
+int16_t
+int32_t
+int64_t
+uint8_t
+uint16_t
+uint32_t
+uint64_t
+```
+2. 最小宽度类型（minimum width type），保证某个整数类型的最小长度。
+```c
+int_least8_t
+int_least16_t
+int_least32_t
+int_least64_t
+uint_least8_t
+uint_least16_t
+uint_least32_t
+uint_least64_t
+```
+3. 最快的最小宽度类型（fast minimum width type），可以使整数计算达到最快的类型。
+```c
+int_fast8_t
+int_fast16_t
+int_fast32_t
+int_fast64_t
+uint_fast8_t
+uint_fast16_t
+uint_fast32_t
+uint_fast64_t
+```
+4. 可以保存指针的整数类型。
+```text
+intptr_t：可以存储指针（内存地址）的有符号整数类型。
+uintptr_t：可以存储指针的无符号整数类型。
+```
+5. 最大宽度整数类型，用于存放最大的整数。
+```text
+intmax_t：可以存储任何有效的有符号整数的类型。
+uintmax_t：可以存放任何有效的无符号整数的类型。
+```
 
 ## 来源
 * [https://wangdoc.com/clang/types.html#navbar](https://wangdoc.com/clang/types.html#navbar)
