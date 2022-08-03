@@ -1,27 +1,20 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
-- [数据类型](#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B)
-  - [字符类型](#%E5%AD%97%E7%AC%A6%E7%B1%BB%E5%9E%8B)
-  - [整数类型](#%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B)
-    - [1. signed、unsigned](#1-signedunsigned)
-    - [2. 子类型](#2-%E5%AD%90%E7%B1%BB%E5%9E%8B)
-    - [3. 整数的进制](#3-%E6%95%B4%E6%95%B0%E7%9A%84%E8%BF%9B%E5%88%B6)
-  - [浮点数类型](#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B1%BB%E5%9E%8B)
-  - [布尔类型](#%E5%B8%83%E5%B0%94%E7%B1%BB%E5%9E%8B)
-  - [字面量的类型](#%E5%AD%97%E9%9D%A2%E9%87%8F%E7%9A%84%E7%B1%BB%E5%9E%8B)
-  - [字面量后缀](#%E5%AD%97%E9%9D%A2%E9%87%8F%E5%90%8E%E7%BC%80)
-  - [溢出](#%E6%BA%A2%E5%87%BA)
-  - [sizeof 运算符](#sizeof-%E8%BF%90%E7%AE%97%E7%AC%A6)
-  - [类型的自动转换](#%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%87%AA%E5%8A%A8%E8%BD%AC%E6%8D%A2)
-  - [类型的显示转换](#%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%98%BE%E7%A4%BA%E8%BD%AC%E6%8D%A2)
-  - [可移植类型](#%E5%8F%AF%E7%A7%BB%E6%A4%8D%E7%B1%BB%E5%9E%8B)
-  - [来源](#%E6%9D%A5%E6%BA%90)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # 数据类型
+- [数据类型](#数据类型)
+    - [字符类型](#字符类型)
+    - [整数类型](#整数类型)
+        - [1. signed、unsigned](#1-signedunsigned)
+        - [2. 子类型](#2-子类型)
+        - [3. 整数的进制](#3-整数的进制)
+    - [浮点数类型](#浮点数类型)
+    - [布尔类型](#布尔类型)
+    - [字面量的类型](#字面量的类型)
+    - [字面量后缀](#字面量后缀)
+    - [溢出](#溢出)
+    - [sizeof 运算符](#sizeof-运算符)
+    - [类型的自动转换](#类型的自动转换)
+    - [类型的显示转换](#类型的显示转换)
+    - [可移植类型](#可移植类型)
+    - [来源](#来源)
 
 ## 字符类型
 字符类型声明使用`char`关键字。在计算机内部，字符类型使用`1个字节（8比特）`存储。C 语言将其当做整数处理，所以字符就是宽度为一个字节的整数。每个字符对应一个整数（参考 ASCII），比如`A`对应整数`65`。
