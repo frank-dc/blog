@@ -1,4 +1,25 @@
 # technical summary docs
+- [technical summary docs](#technical-summary-docs)
+  - [tool](#tool)
+    - [1. ansible](#1-ansible)
+    - [2. cicd](#2-cicd)
+  - [OS](#os)
+    - [1. linux](#1-linux)
+    - [2. cpu（处理器）](#2-cpu处理器)
+    - [3. mem（内存）](#3-mem内存)
+    - [4. network（网络）](#4-network网络)
+      - [TCP/IP](#tcpip)
+    - [5. store（存储）](#5-store存储)
+      - [Redis](#redis)
+    - [6. IO](#6-io)
+  - [Program](#program)
+    - [1. shell](#1-shell)
+    - [2. python](#2-python)
+      - [算法](#算法)
+      - [闭包](#闭包)
+      - [爬虫](#爬虫)
+    - [3. golang](#3-golang)
+    - [4. c](#4-c)
 
 ## tool 
 ### 1. ansible
