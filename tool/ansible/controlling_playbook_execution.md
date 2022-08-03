@@ -1,4 +1,13 @@
-# 选择策略
+# 控制 ansible playbook 执行
+- [控制 ansible playbook 执行](#控制-ansible-playbook-执行)
+  - [选择策略](#选择策略)
+  - [控制并行进程数](#控制并行进程数)
+  - [使用关键字控制执行](#使用关键字控制执行)
+  - [关键字 timeout](#关键字-timeout)
+  - [条件判断 when](#条件判断-when)
+  - [模块wait_for](#模块wait_for)
+
+## 选择策略
 有三种策略可供选择，分别是[linear strategy（默认策略）](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/linear_strategy.html#linear-strategy)、[debug strategy](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/debug_strategy.html#debug-strategy)、[free strategy](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/free_strategy.html#free-strategy)。
 * playbook中指定。
 ```yaml
@@ -14,7 +23,7 @@
 strategy = free
 ```
 
-# 控制并行进程数
+## 控制并行进程数
 * 你可以在配置文件ansible.cfg设置数字。
 ```
 [defaults]
@@ -27,7 +36,7 @@ forks = 30
                         (default=5)
 ```
 
-# 使用关键字控制执行
+## 使用关键字控制执行
 * `serial` 可以设置每一次管理的主机数量。
 
 每批次3台主机。
@@ -131,10 +140,10 @@ tasks:
 
 * 影响剧本执行的[其他一些关键字](https://docs.ansible.com/ansible/latest/reference_appendices/playbooks_keywords.html)`ignore_errors`、`ignore_unreachable`、`any_errors_fatal`、`max_fail_percentage（适用于linear strategy）`
 
-# 关键字 timeout
+## 关键字 timeout
 ansible版本2.10及以上支持在[Play、Role、Block、Task]设置`timeout`关键字，设置任务执行超时时间，可以解决playbook执行过程中hang住无返回的问题。
 
-# 条件判断 when
+## 条件判断 when
 * 在 playbook 里，根据 fact 里面的值，变量，或先前任务的输出结果，你或许想要执行不同的任务，或者有不同的目标。
 * 根据其它变量的值得到某些变量的值。
 * 根据主机是否符合某些条件匹配出新的主机组。
@@ -149,7 +158,7 @@ tasks:
 ```
 详情见 -> [Conditionals](https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html)
 
-# 模块wait_for
+## 模块wait_for
 * 轮训端口（host:port)。
 * 查找文件是否存在（path)。
 * 在文件或socket连接中匹配字符串是否存在（search_regex）。

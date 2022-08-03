@@ -1,4 +1,14 @@
-# 准备工作
+# 如何创建 RPM 包
+- [如何创建 RPM 包](#如何创建-rpm-包)
+  - [准备工作](#准备工作)
+  - [rpmbuild目录结构说明](#rpmbuild目录结构说明)
+  - [宏定义](#宏定义)
+  - [hello.spec样例](#hellospec样例)
+  - [构建（rpmbuild）](#构建rpmbuild)
+  - [放置yum仓库](#放置yum仓库)
+  - [客户端](#客户端)
+
+## 准备工作
 * 安装依赖包
 ```shell
 yum install -y rpmdevtools rpmlint
@@ -17,7 +27,7 @@ rpmbuild/
 └── SRPMS
 ```
 
-# rpmbuild目录结构说明
+## rpmbuild目录结构说明
 
 | 目录       | 宏代码 |   名称 | 功能  |
 | :-------- | :---- | :----- | :----|
@@ -27,7 +37,7 @@ rpmbuild/
 ~/rpmbuild/SPECS|	%_specdir	|SPEC文件目录	|包含.spec文件，.spec文件定义了包的构建方式
 ~/rpmbuild/SRPMS|	%_srcrpmdir	|源RPM包目录	|源RPM包不属于架构或发行版，实际的.rpm包构建基于.src.rpm包
 
-# 宏定义
+## 宏定义
 SPEC文件中使用的宏一般是在 rpmrc and macros configuration file(s). 中定义。也可以通过 rpm/rpmbuild --showrc 查看。
 ```shell
 # rpmbuild --showrc |grep topdir
@@ -70,7 +80,7 @@ SPEC文件中使用的宏一般是在 rpmrc and macros configuration file(s). �
 /root/rpmbuild
 ```
   
-# hello.spec样例
+## hello.spec样例
 将源代码[hello-2.10.tar.gz](http:/ftp.gnu.org/gnu/hello/hello-2.10.tar.gz)放到~/rpmbuild/SOURCES。
   
 <details>
@@ -135,7 +145,7 @@ if [ $1 = 0 ] ; then
      
 </details>
   
-# 构建（rpmbuild）
+## 构建（rpmbuild）
 ```shell
 # rpmbuild -ba hello.spec
 ```
@@ -162,7 +172,7 @@ if [ $1 = 0 ] ; then
 
 </details>
   
-# 放置yum仓库
+## 放置yum仓库
 * 从~/rpmbuild/RPMS中拷贝rpm包至下载目录，比如/var/www/yum。
 ```shell
 # cp ~/rpmbuild/RPMS/hello-2.10-1.el7.x86_64.rpm /var/www/yum
@@ -172,7 +182,7 @@ if [ $1 = 0 ] ; then
 # createrepo --update /var/www/yum
 ```
   
-# 客户端
+## 客户端
 ```shell
 # yum makecache fast
 ```

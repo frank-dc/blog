@@ -1,4 +1,9 @@
 # gitlab 升级
+- [gitlab 升级](#gitlab-升级)
+	- [概要](#概要)
+	- [升级路径](#升级路径)
+	- [Troubleshooting](#troubleshooting)
+	- [参考文档](#参考文档)
 
 ## 概要
 升级前注意参考 version-specific changes，比如 [Gitlab 15 specific changes](https://docs.gitlab.com/omnibus/update/gitlab_15_changes.html) 。
