@@ -79,6 +79,7 @@ before pa = 0X6D3933E4	pd = 0X6D3933D0	pc = 0X6D3933C7
 after  pa = 0X6D3933E8	pd = 0X6D3933D8	pc = 0X6D3933C8
 ```
 ![指针变量加减运算的结果跟数据类型的长度有关](https://github.com/frank-dc/drawpics/blob/main/addition_and_subtraction_of_pointer_and_integers.png?raw=true)
+
 如图所示，`int`类型占用`4`个字节，如果`pa + 1`如图（2）红色虚线地址加 1 的话，那么前3个字节是变量`a`的，后面1个字节是其他数据的，把他们`搅合`在一起显然没有实际意义，取得的数据也会非常怪异。
 
 如果`pa + 1`如图（3）地址加 4 的话，正好能够完全跳过整数变量 a，指向它后面的内存。
@@ -100,6 +101,7 @@ ptrdiff_t dist = j1 - j2;
 printf("%d\n", dist);       // output: -2
 ```
 * 指针与指针的比较运算。
+  
 指针之间的比较运算，比较的是各自的内存地址哪一个更大，返回值是整数`1`（true）或`0`（false）。
 
 ## 来源
