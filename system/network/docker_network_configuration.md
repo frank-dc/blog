@@ -6,6 +6,7 @@
     - [host 模式](#host-模式)
     - [none 模式](#none-模式)
   - [Docker 容器网络配置](#docker-容器网络配置-1)
+  - [创建一个额外的自定义网桥，区别于 docker0](#创建一个额外的自定义网桥区别于-docker0)
   - [来源](#来源)
 
 ## Docker 四种网络模式
@@ -146,6 +147,40 @@ $ ip netns exec ns1 ip a
        valid_lft forever preferred_lft forever
     inet6 fe80::c854:5cff:fe58:8dc/64 scope link 
        valid_lft forever preferred_lft forever
+```
+
+## 创建一个额外的自定义网桥，区别于 docker0
+```shell
+$ docker network create -d bridge --subnet "172.18.0.0/16" --gateway "172.18.0.1" mybr 
+8fdd4ac33131fd890552462db08fb71d772c82d15b44e23e4a2fb1fb7199ee1e
+
+$ docker network ls
+NETWORK ID     NAME       DRIVER    SCOPE
+c3c4e74aab0a   bridge     bridge    local
+70fbb34728da   host       host      local
+649ccc59b59e   minikube   bridge    local
+8fdd4ac33131   mybr       bridge    local
+75e144e57a58   none       null      local
+
+$ docker run -it --name b1 --network mybr busybox
+/ # ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+62: eth0@if63: <BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN> mtu 1500 qdisc noqueue 
+    link/ether 02:42:ac:12:00:02 brd ff:ff:ff:ff:ff:ff
+    inet 172.18.0.2/16 brd 172.18.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+       
+$ ip a
+# ...
+57: br-8fdd4ac33131: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default 
+    link/ether 02:42:25:86:15:47 brd ff:ff:ff:ff:ff:ff
+    inet 172.18.0.1/16 brd 172.18.255.255 scope global br-8fdd4ac33131
+       valid_lft forever preferred_lft forever
+63: veth1e16841@if62: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-8fdd4ac33131 state UP group default 
+    link/ether 06:e1:e0:32:93:63 brd ff:ff:ff:ff:ff:ff link-netnsid 3
 ```
 
 ## 来源
