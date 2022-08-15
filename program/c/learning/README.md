@@ -1,10 +1,10 @@
 # C 语言学习
 
-* [变量](https://github.com/frank-dc/blog/blob/main/program/c/learning/variable.md)
-* [运算符](https://github.com/frank-dc/blog/blob/main/program/c/learning/operator.md)
-* [数据类型](https://github.com/frank-dc/blog/blob/main/program/c/learning/type.md)
-* [流程控制](https://github.com/frank-dc/blog/blob/main/program/c/learning/flow-control.md)
-* [指针](https://github.com/frank-dc/blog/blob/main/program/c/learning/pointer.md)
-* [函数](https://github.com/frank-dc/blog/blob/main/program/c/learning/function.md)
-* [数组](https://github.com/frank-dc/blog/blob/main/program/c/learning/array.md)
+* [变量](variable.md)
+* [运算符](operator.md)
+* [数据类型](type.md)
+* [流程控制](flow-control.md)
+* [指针](pointer.md)
+* [函数](function.md)
+* [数组](array.md)
 * [字符串](strings.md)
