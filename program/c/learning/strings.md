@@ -47,7 +47,7 @@ s[0] = 'z';
 printf("%s\n", s);  // Process finished with exit code 138 (interrupted by signal 10: SIGBUS)
 ```
 
-而声明数组时，编译器会给数组单独分配一段内存，字符串字面量会被编译器解释成字符数组，逐个字符写入这段新分配的内存之中，这段内存是允许修改的。
+而声明为数组时，编译器会给数组单独分配一段内存，字符串字面量会被编译器解释成字符数组，逐个字符写入这段新分配的内存之中，这段内存是允许修改的。
 ```c
 char s[6] = "hello";
 s[0] = 'z';
@@ -69,3 +69,25 @@ printf("%s\n", s);      // error: array type 'char [6]' is not assignable
 原因是字符数组的变量名，跟所指向的数组是绑定的，C 语言规定，该数组变量是一个不可修改的左值，不能用`赋值运算符`为它重新赋值。
 
 想要重新赋值，必须使用 C 语言原生提供的`strcpy()`函数，通过字符串拷贝赋值，数组变量的地址依然不变。`strcpy()`只是在原地址写入新的字符串，而不是让数组变量指向新的地址。
+```c
+char s[] = "hello";
+strcpy(s, "world");     // strcpy 原型定义在 string.h
+printf("%s\n", s);
+```
+
+## 字符串相关函数
+1. `strlen()`函数返回字符串字面量的字节长度，不包括末尾的空字符`\0`。而`sizeof`返回字符串变量字节长度。
+```c
+char s[] = "hello";
+
+printf("sizeof: %d\n", sizeof(s));      // 6
+printf("strlen: %d\n", strlen(s));      // 5
+
+char s[50] = "hello";
+printf("sizeof: %d\n", sizeof(s));      // 50
+```
+
+2. `strcpy()`函数的作用就是上文提到的，将一个字符串赋值给字符数组变量，因为字符串的复制不能使用赋值运算符。
+```c
+
+```
