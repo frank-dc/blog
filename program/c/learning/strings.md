@@ -1,4 +1,10 @@
 # 字符串
+- [字符串](#字符串)
+  - [简介](#简介)
+  - [字符串变量的声明](#字符串变量的声明)
+  - [字符串相关函数](#字符串相关函数)
+  - [字符串数组](#字符串数组)
+  - [来源](#来源)
 
 ## 简介
 1. C 语言没有单独的字符串类型，字符串被当做字符数组，即`char`类型的数组。
@@ -89,5 +95,104 @@ printf("sizeof: %d\n", sizeof(s));      // 50
 
 2. `strcpy()`函数的作用就是上文提到的，将一个字符串赋值给字符数组变量，因为字符串的复制不能使用赋值运算符。
 ```c
+char * s1 = "Beast";
+char s2[] = "Be the best that you can be.";
 
+char * ps;
+
+ps = strcpy(s2 + 7, s1);    // 从 s2 第7个位置开始拷贝字符串 Beast，后面内容会被截去。
+                            // 该函数返回的是一个指针，指向拷贝开始的位置。
+
+puts(s2);   // Be the Beast
+puts(ps);   // Beast
+
+printf("%p\n", s1);     // 0x104fd3f90
+printf("%p\n", ps);     // 0x16ae2f877
 ```
+> 该函数使用有安全风险，因为它并不检查目标字符串的长度，是否足够容纳原字符串的副本，可能导致写入溢出。建议使用`strncpy()`函数。
+
+3. `strncpy()`函数作用如`strcpy()`，多了第三个参数，用来指定复制的最大字符数，防止溢出目标字符串变量的边界。
+```c
+char s1[40];
+char s2[12] = "hello world";
+
+strncpy(s1, s2, 7);
+
+printf("%s\n", s1);     // hello w
+```
+
+4. `strcat()`、`strncat()`函数用于连接字符串。后者可以指定最大添加的字符数，所以`strcat()`需要注意原字符串的长度。
+```c
+char s1[10] = "Monday";
+char * s2 = "Tuesday";
+
+strncat(s1, s2, 3);
+puts(s1);       // MondayTue
+```
+
+5. `strcmp()`、`strncmp()`函数用于比较两个字符串的内容，前者比较的是整个字符串，后者是比较到指定的位置。
+```c
+char * s1 = "How do you do!";
+char * s3 = "How are you?";
+
+printf("%d\n", strncmp(s1, s3, 5));     // 3
+printf("%d\n", strncmp(s3, s1, 5));     // -3
+printf("%d\n", strncmp(s1, s3, 3));     // 0
+```
+
+6. `sprintf()`、`snprintf()`函数用于将数据写入字符串，而不是输出到显示器。
+```c
+char * s1 = "Hello";
+char * s2 = "world";
+char s[50];
+
+sprintf(s, "%s %s", s1, s2);
+printf("%s\n", s);      // Hello world
+
+snprintf(s, 10, "%s %s", s1, s2);       // 可以控制写入的字符串的长度。
+printf("%s\n", s);      // Hello wor
+```
+
+## 字符串数组
+每个字符串本身是一个字符数组，多个字符串需要通过二维的字符数组实现。
+```c
+char weekdays[7][10] = {
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday"
+};
+```
+
+因为第一维的长度，编译器可以自动计算，因此可以省略。
+```c
+char weekdays[][10] = {
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday"
+};
+```
+
+第二维的长度统一设定为10，浪费空间，可以将第二维从`字符数组`改成`字符指针`。
+```c
+char * weekdays[] = {
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday"
+};
+```
+这样的话其实是一个一维数组，成员就是7个字符指针，每个指针指向一个字符串（字符数组）。
+
+## 来源
+* [https://wangdoc.com/clang/string.html](https://wangdoc.com/clang/string.html)
