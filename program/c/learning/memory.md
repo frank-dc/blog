@@ -121,7 +121,7 @@ char t[100];
 memcpy(t, s, sizeof(s));    // 拷贝6个字节，包括终止符\0。
 printf("%s\n", t);          // Goats
 ```
-`memcpy()`可以取代`strcpy()`进行字符串拷贝，更安全也跟快。
+`memcpy()`可以取代`strcpy()`进行字符串拷贝，更安全速度也更快。
 ```c
 char * s = "hello world";
 size_t len = sizeof(s);
