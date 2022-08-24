@@ -1,4 +1,14 @@
 # struct 结构
+- [struct 结构](#struct-结构)
+  - [简介](#简介)
+  - [声明和初始化](#声明和初始化)
+  - [struct 结构占用空间](#struct-结构占用空间)
+  - [struct 的复制](#struct-的复制)
+  - [struct 指针](#struct-指针)
+  - [struct 的嵌套](#struct-的嵌套)
+  - [位字段](#位字段)
+  - [弹性数组成员](#弹性数组成员)
+  - [来源](#来源)
 
 ## 简介
 C 语言内置的数据类型，除了最基本的几种[原始类型](type.md)，只有[数组](array.md)属于复合类型，可以同时包含多个值（但是类型必须相同）。
@@ -202,7 +212,124 @@ void happy(struct cat* t) {
 ```
 
 ## struct 的嵌套
+`struct`结构的成员可以是另一个`struct`结构。
+```c
+struct species {
+    char* name;
+    int kinds;
+};
 
+struct fish {
+    char* name;
+    int age;
+    struct species breed;
+};
+```
+上面示例中，`fish`的属性`bread`是另一个 struct 结构`species`。
+
+赋值的时候有多种写法。
+```c
+// 写法一
+struct fish shark = {"shark", 8, {"Selachimorpha", 500}};
+
+// 写法二
+struct species myBread = {"Selachimorpha", 500};
+struct fish shark = {"shark", 8, myBread};
+
+// 写法三
+struct fish shark = {
+    .name="shark",
+    .age=8,
+    .bread={"Selachimorpha", 500}
+};
+
+// 写法四
+struct fish shark = {
+    .name="shark",
+    .age=8,
+    .bread.name="Selachimorpha",
+    .bread.kind=500
+};
+```
+
+对字符数组赋值要使用`strcpy()`函数，不能是用赋值运算符`=`。
+```c
+struct name {
+    char first[50];
+    char last[50];
+};
+
+struct student {
+    struct name name;
+    short age;
+    char sex;
+} stu1;
+
+strcpy(stu1.name.first, "Harry");
+strcpy(stu1.name.last, "Potter");
+
+// 等同于
+struct name myName = {"Harry", "Potter"};
+stu1.name = myName;
+```
+
+`struct`结构内部不仅可以引用其他结构，还可以自我引用，即结构内部引用当前结构。
+```c
+struct node {
+    int data;
+    struct node* next;
+};
+```
+上面示例中的`node`结构的`next`属性，就是指向另一个`node`实例的指针。可以使用这个结构自定义一个数据链表。
+```c
+struct node* head;
+
+// 生成一个三个节点的链表
+head = malloc(sizeof(struct node));
+
+head->data = 11;
+head->next = malloc(sizeof(struct node));
+
+head->next->data = 22;
+head->next->next = malloc(sizeof(struct node));
+
+head->next->next->data = 33;
+head->next->next->next = NULL;
+
+// 遍历这个链表
+for (struct node* cur = head; cur != NULL; cur = cur->next) {
+    printf("%d\n", cur->data);
+}
+```
 ## 位字段
+`struct`还可以用来定义二进制位组成的数据结构，称为`位字段`（bit field）。对于操作底层的二进制数据非常有用。
+```c
+struct {
+    unsigned int a:1;
+    unsigned int b:1;
+    unsigned int c:1;
+    unsigned int d:1;
+} synth;
+
+synth.a = 0;
+```
+上面示例中，每个属性后面的`:1`，表示指定这些属性只占用一个二进制位，所以这个结构一共占用四个二进制位。
+
+> 定义二进制位时，各个属性只能是整数类型。
 
 ## 弹性数组成员
+很多时候，不能事先确定数组到底有多少个成员。如果声明数组的时候，事先给出一个很大的成员数，就会很浪费空间。C 语言提供了一个解决方法，叫做弹性数组成员（flexible array member）。
+
+弹性数组成员有一些专门的规则。首先，弹性成员的数组，必须是 struct 结构的最后一个属性。另外，除了弹性数组成员，struct 结构必须至少还有一个其他属性。
+```c
+struct vstring {
+  int len;
+  char chars[];
+};
+
+struct vstring vstr = malloc(sizeof(struct vstring) + n * sizeof(char));
+str->len = n;
+```
+
+## 来源
+* [https://wangdoc.com/clang/struct.html](https://wangdoc.com/clang/struct.html)
