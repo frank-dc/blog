@@ -25,6 +25,7 @@
 ### 1. ansible
 * [ansible 控制剧本执行的一些策略以及关键词](tool/ansible/controlling_playbook_execution.md)
 * [ansible 常见性能优化](tool/ansible/performance_improvement.md)
+* [ansible tags 使用](tool/ansible/use_of_ansible_tags.md)
 
 ### 2. cicd
 * [gitlab 升级](tool/cicd/gitlab_upgrade.md)
