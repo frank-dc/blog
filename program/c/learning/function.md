@@ -237,3 +237,5 @@ double average(int i, ...) {
 
 ## 来源
 * [https://wangdoc.com/clang/function.html](https://wangdoc.com/clang/function.html)
+
+[返回 C 语言学习](README.md)
