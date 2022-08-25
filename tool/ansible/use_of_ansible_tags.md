@@ -1,4 +1,8 @@
 # ansible tags 的使用
+- [ansible tags 的使用](#ansible-tags-的使用)
+  - [常规使用](#常规使用)
+  - [内置的几个 tags](#内置的几个-tags)
+  - [特殊使用](#特殊使用)
 
 ## 常规使用
 参考 [https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html#tag-inheritance-for-includes-blocks-and-the-apply-keyword](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html#tag-inheritance-for-includes-blocks-and-the-apply-keyword)
