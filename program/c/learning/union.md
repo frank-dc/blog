@@ -35,5 +35,3 @@ union quantity q = {5};
 
 ## 来源
 * [https://wangdoc.com/clang/union.html](https://wangdoc.com/clang/union.html)
-
-<div style="text-align: center;">[返回 C 语言学习](README.md)</div>

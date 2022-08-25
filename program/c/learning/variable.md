@@ -69,5 +69,3 @@ int main() {
 
 ## 来源
 * [https://wangdoc.com/clang/variable.html](https://wangdoc.com/clang/variable.html)
-
-<div style="text-align: center;">[返回 C 语言学习](README.md)</div>

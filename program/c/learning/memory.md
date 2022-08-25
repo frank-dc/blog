@@ -174,5 +174,3 @@ p = malloc(sizeof(int));
 
 ## 来源
 * [https://wangdoc.com/clang/memory.html](https://wangdoc.com/clang/memory.html)
-
-<div style="text-align: center;">[返回 C 语言学习](README.md)</div>

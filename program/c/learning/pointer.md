@@ -106,5 +106,3 @@ printf("%d\n", dist);       // output: -2
 
 ## 来源
 * [https://wangdoc.com/clang/pointer.html](https://wangdoc.com/clang/pointer.html)
-
-<div style="text-align: center;">[返回 C 语言学习](README.md)</div>

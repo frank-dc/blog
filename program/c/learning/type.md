@@ -311,5 +311,3 @@ uintmax_t：可以存放任何有效的无符号整数的类型。
 
 ## 来源
 * [https://wangdoc.com/clang/types.html#navbar](https://wangdoc.com/clang/types.html#navbar)
-
-<div style="text-align: center;">[返回 C 语言学习](README.md)</div>
