@@ -334,4 +334,4 @@ str->len = n;
 ## 来源
 * [https://wangdoc.com/clang/struct.html](https://wangdoc.com/clang/struct.html)
 
-[返回 C 语言学习](README.md)
+<div style="text-align: center;">[返回 C 语言学习](README.md)</div>

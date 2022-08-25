@@ -91,4 +91,4 @@ C 语言用于比较的表达式，称为关系表达式（relation expression�
 ## 来源
 * [https://wangdoc.com/clang/operator.html](https://wangdoc.com/clang/operator.html)
 
-[返回 C 语言学习](README.md)
+<div style="text-align: center;">[返回 C 语言学习](README.md)</div>

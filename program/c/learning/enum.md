@@ -52,4 +52,4 @@ H = 5
 ## 来源
 * [https://wangdoc.com/clang/enum.html](https://wangdoc.com/clang/enum.html)
 
-[返回 C 语言学习](README.md)
+<div style="text-align: center;">[返回 C 语言学习](README.md)</div>
