@@ -29,6 +29,7 @@
 
 ### 2. cicd
 * [gitlab 升级](tool/cicd/gitlab_upgrade.md)
+* [jenkins 环境变量](tool/cicd/jenkins_variables.md)
 
 
 ## OS or Virtualization
