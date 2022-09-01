@@ -24,20 +24,60 @@ strategy = free
 ```
 
 ## 控制并行进程数
-* 你可以在配置文件ansible.cfg设置数字。
+在单次任务上，可以控制多少并行节点执行任务，注意和`serial`区分。简言之，就是对每一个任务所有节点都要跑完，才能继续下一个任务。
+
+可以在配置文件ansible.cfg设置数字。
 ```
 [defaults]
 forks = 30
 ```
-* 或者通过命令行`-f 30`传递。
+或者通过命令行`-f 30`传递。
 ```
   -f FORKS, --forks=FORKS
                         specify number of parallel processes to use
                         (default=5)
 ```
 
+> Story 1: `2 Tasks`, `10 nodes` with `forks =5`.
+
+> Run the playbook only once,
+
+> 1st task on first 5 nodes = 5s (node1, node2, node3, node4, node5)
+
+> 1st task on second 5 nodes = 5s (node6, node7, node8, node9, node10)
+
+> 2nd task on first 5 nodes = 5s (node1, node2, node3, node4, node5)
+
+> 2nd task on second 5 nodes = 5s (node6, node7, node8, node9, node10)
+
+> Total time taken for playbook = 20s
+
+---
+
+> Story 2: `2 Tasks`, `10 nodes` with `forks=5` and `serial =4`
+
+> Run the playbook twice(maybe more),
+
+> First run, 1st task = 5s (node1, node2, node3, node4)
+
+> First run, 2nd task = 5s (node1, node2, node3, node4)
+
+> Second run, 1st task = 5s (node5, node6, node7, node8)
+
+> Second run, 2nd task = 5s (node5, node6, node7, node8)
+
+> Third run, 1st task = 5s (node9, node10)
+
+> Third run, 2nd task = 5s (node9, node10)
+
+> Total time taken for playbook = 30s
+
+
+
 ## 使用关键字控制执行
-* `serial` 可以设置每一次管理的主机数量。
+`serial`在一次剧本上（可能有多个任务），可以控制多少并行节点执行任务。简言之，就是这一批次主机要跑完所有任务，下一批次主机才能跑。
+ 
+[`forks`和`serial`区别可以参考此文档](https://medium.com/devops-srilanka/difference-between-forks-and-serial-in-ansible-48677ebe3f36)
 
 每批次3台主机。
 ```yaml
@@ -179,3 +219,83 @@ tasks:
 
 详情见 -> [ansible.builtin.wait_for module ](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/wait_for_module.html#id1)
 
+
+serial 和 forks 可以使用以下playbook样例验证
+```shell
+$ cat main.yml
+---
+- hosts: localhost,10.129.120.2
+  serial: 1
+  gather_facts: false
+  tasks:
+    - debug:
+        msg: task 1
+      tags: t1
+
+    - include_tasks:
+        file: install.yml
+```
+```shell
+$ cat install.yml
+---
+- debug:
+    msg: task 2
+  tags: t2
+
+- debug:
+    msg: task 3
+  tags: t3
+```
+```
+$ cat hosts
+[test]
+localhost
+10.129.120.2
+```
+```shell
+$ ansible-playbook main.yml -i hosts
+
+PLAY [localhost,10.129.120.2] ************************************************************************************************************************
+
+TASK [debug] *****************************************************************************************************************************************
+ok: [localhost] => {
+    "msg": "task 1"
+}
+
+TASK [include_tasks] *********************************************************************************************************************************
+included: /home/ansible_user/frank.deng/ansible-test/install.yml for localhost
+
+TASK [debug] *****************************************************************************************************************************************
+ok: [localhost] => {
+    "msg": "task 2"
+}
+
+TASK [debug] *****************************************************************************************************************************************
+ok: [localhost] => {
+    "msg": "task 3"
+}
+
+PLAY [localhost,10.129.120.2] ************************************************************************************************************************
+
+TASK [debug] *****************************************************************************************************************************************
+ok: [10.129.120.2] => {
+    "msg": "task 1"
+}
+
+TASK [include_tasks] *********************************************************************************************************************************
+included: /home/ansible_user/frank.deng/ansible-test/install.yml for 10.129.120.2
+
+TASK [debug] *****************************************************************************************************************************************
+ok: [10.129.120.2] => {
+    "msg": "task 2"
+}
+
+TASK [debug] *****************************************************************************************************************************************
+ok: [10.129.120.2] => {
+    "msg": "task 3"
+}
+
+PLAY RECAP *******************************************************************************************************************************************
+10.129.120.2               : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+localhost                  : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
