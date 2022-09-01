@@ -24,12 +24,14 @@ strategy = free
 ```
 
 ## 控制并行进程数
-* 在单次任务上，可以控制多少并行节点执行任务，注意和`serial`区分。可以在配置文件ansible.cfg设置数字。
+在单次任务上，可以控制多少并行节点执行任务，注意和`serial`区分。简言之，就是对每一个任务所有节点都要跑完，才能继续下一个任务。
+
+可以在配置文件ansible.cfg设置数字。
 ```
 [defaults]
 forks = 30
 ```
-* 或者通过命令行`-f 30`传递。
+或者通过命令行`-f 30`传递。
 ```
   -f FORKS, --forks=FORKS
                         specify number of parallel processes to use
@@ -73,7 +75,9 @@ forks = 30
 
 
 ## 使用关键字控制执行
-* `serial`在一次剧本上（可能有多个任务），可以控制多少并行节点执行任务。[`forks`和`serial`区别可以参考此文档](https://medium.com/devops-srilanka/difference-between-forks-and-serial-in-ansible-48677ebe3f36)
+`serial`在一次剧本上（可能有多个任务），可以控制多少并行节点执行任务。简言之，就是这一批次主机要跑完所有任务，下一批次主机才能跑。
+ 
+[`forks`和`serial`区别可以参考此文档](https://medium.com/devops-srilanka/difference-between-forks-and-serial-in-ansible-48677ebe3f36)
 
 每批次3台主机。
 ```yaml
