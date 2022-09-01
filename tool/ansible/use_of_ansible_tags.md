@@ -55,3 +55,85 @@ included: ./main.yml for XXX
   tags:
     - always
 ```
+
+
+如果要对include_tasks里面的任务也使用tag，那么include_tasks任务本身必须打上`always` tag。
+```shell
+$ cat main.yml
+---
+- hosts: localhost,10.129.120.2
+  serial: 2
+  gather_facts: false
+  tasks:
+    - debug:
+        msg: task 1
+      tags: t1                      # @1
+
+    - include_tasks:
+        file: install.yml
+        apply:
+          tags: install             # @2
+      tags: [install]               # @3
+      
+$ cat install.yml
+---
+- debug:
+    msg: task 2
+  tags: t2                          # @4
+
+- debug:
+    msg: task 3
+  tags: t3                          # @5
+  
+$ cat hosts
+[test]
+localhost
+10.129.120.2
+```
+
+> story 1: 如果`@3`没有标签`always`。
+```shell
+$ ansible-playbook main.yml -i hosts --tags t3
+
+PLAY [localhost,10.129.120.2] ************************************************************************************************************************
+
+PLAY RECAP *******************************************************************************************************************************************
+```
+
+> story2: `@3`标签`always`。
+```shell
+$ cat main.yml
+---
+- hosts: localhost,10.129.120.2
+  serial: 2
+  gather_facts: false
+  tasks:
+    - debug:
+        msg: task 1
+      tags: t1
+
+    - include_tasks:
+        file: install.yml
+        apply:
+          tags: install
+      tags: [install,always]
+
+$ ansible-playbook main.yml -i hosts --tags t3
+
+PLAY [localhost,10.129.120.2] ************************************************************************************************************************
+
+TASK [include_tasks] *********************************************************************************************************************************
+included: /home/ansible_user/frank.deng/ansible-test/install.yml for localhost, 10.129.120.2
+
+TASK [debug] *****************************************************************************************************************************************
+ok: [localhost] => {
+    "msg": "task 3"
+}
+ok: [10.129.120.2] => {
+    "msg": "task 3"
+}
+
+PLAY RECAP *******************************************************************************************************************************************
+10.129.120.2               : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+localhost                  : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
