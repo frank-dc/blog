@@ -64,10 +64,19 @@ printf("##%*.*f##\n", 6, 2, 0.5);
 printf("%.7s\n", "hello world");    //输出 hello w
 ```
 
-
 ### putchar()
+`putchar()`函数将它的参数字符输出到屏幕。
+```c
+putchar(ch);
+//等同于
+printf("%c\n", ch);
+```
 
 ### puts()
+`puts()`函数用于将字符串显示在屏幕上，并自动在字符串末尾添加换行符。
+```c
+int	 puts(const char *);
+```
 
 ## 输入函数（读）
 ### scanf()
@@ -131,8 +140,33 @@ sscanf(str, "%d%d", &i, &j);
 ```
 
 ### getchar()
+```c
+int getchar(void);
+```
+`getchar()`函数返回用户从键盘输入的一个字符，不会忽略起首的空白字符。
+```c
+char ch;
+ch = getchar();     //输入 ba
+// 等同于
+scanf("%c", &ch);
+
+printf("%c\n", ch);     //输出 b
+```
 
 ### gets()
+`warning: this program uses gets(), which is unsafe.`
+
+`gets()`函数用于从`stdin`读取整行输入，不会跳过起首的空白字符，直到遇到换行符为止。
+```c
+char	*gets(char *);
+```
+```c
+char words[100];
+puts("Plz enter a string: ");
+gets(words);
+
+printf("%s\n", words);
+```
 
 ## 来源
 * [https://wangdoc.com/clang/io.html](https://wangdoc.com/clang/io.html)
