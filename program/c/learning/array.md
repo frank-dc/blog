@@ -146,7 +146,7 @@ int sum_two_dimensional_array(int a[][4], int n) {
     // ...
 }
 ```
-[具体源代码参考](https://github.com/frank-dc/blog/blob/main/program/c/learning/immutable_length_array.c)
+[具体源代码参考](src/array/immutable_length_array.c)
 
 
 2. 变长数组作为参数
@@ -162,7 +162,7 @@ int sum_two_dimensional_array(int n, int m, int b[n][m]) {
     // ...
 }
 ```
-[具体源代码参考](https://github.com/frank-dc/blog/blob/main/program/c/learning/variable_length_array.c)
+[具体源代码参考](src/array/variable_length_array.c)
 
 3. 数组字面量作为参数
 ```c
