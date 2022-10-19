@@ -19,3 +19,5 @@
 * [I/O 函数](io.md)
 * [变量说明符](specifier.md)
 * [多文件项目](multifile.md)
+* [命令行环境](cli.md)
+* [多字节字符](multibyte.md)
