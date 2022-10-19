@@ -16,9 +16,38 @@ Unicode 对所有符号编码，包含100多万个字符，为每个字符提供
 
 下表总结了编码规则，字母`x`表示可用于编码的位。
 
-| Unicode符号范围（十六进制）   | UTF-8编码方式（二进制）                      |
-|:--------------------|:------------------------------------|
-| 0000 0000-0000 007F | 0xxxxxxx                            |
-| 0000 0080-0000 07FF | 110xxxxx 10xxxxxx                   |
-| 0000 0800-0000 FFFF | 1110xxxx 10xxxxxx 10xxxxxx          |
-| 0001 0000-0010 FFFF | 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx |
+| Unicode符号范围（十六进制）     | UTF-8编码方式（二进制）                      |
+|:----------------------|:------------------------------------|
+| 0000 0000 - 0000 007F | 0xxxxxxx                            |
+| 0000 0080 - 0000 07FF | 110xxxxx 10xxxxxx                   |
+| 0000 0800 - 0000 FFFF | 1110xxxx 10xxxxxx 10xxxxxx          |
+| 0001 0000 - 0010 FFFF | 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx |
+
+如果一个字节的第一位是`0`，表示占用一个字节；第一位是`1`，则连续有多少个`1`，就表示当前字符占用多少个字节。
+
+>下面已汉字`超`为例，演示如何实现 UTF-8 编码。
+
+`超`的 Unicode 码是`8d85`（10001101 10000101），根据上表，可以发现`8d85`处在第三行的范围内（0000 0800 - 0000 FFFF），因此`超`的 UTF-8 编码需要三个字节，即格式为`1110xxxx 10xxxxxx 10xxxxxx`。然后，从`超`的最后一个二进制位开始，依次从后向前填入格式中的`x`，多出来的位补`0`，这样就得到了`超`的 UTF-8 的编码是`11101000 10110110 10000101`，转换成十六进制就是`E8B685`。
+
+对应的python编程实现。
+```python
+ord('超')    # 获取'超'的 Unicode code point（十进制）
+# 36229
+hex(36229)  # 转换成十六进制
+# '0x8d85'
+bin(36229)  # 转换成二进制
+# '0b1000110110000101'
+'超'.encode('utf-8') # '超'的 UTF-8 编码
+# b'\xe8\xb6\x85'
+```
+
+## 字符的表示方法
+
+## 多字节字符的表示方法
+
+
+
+
+## 来源
+* [https://wangdoc.com/clang/multibyte.html](https://wangdoc.com/clang/multibyte.html)
+* [https://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html](https://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html)
