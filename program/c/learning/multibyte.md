@@ -42,11 +42,134 @@ bin(36229)  # 转换成二进制
 ```
 
 ## 字符的表示方法
+字符表示法的本质，是将每个字符映射为一个整数，然后从编码表获得该整数对应的字符。
+
+C 语言提供了不同的写法（其实采用不同进制），用来表示字符的整数号码。
+* `\101`: 以八进制值表示一个字符，斜杠后面需要三个数字。
+* `\x41`: 以十六进制值表示一个字符，`\x`后面是十六进制整数。
+* `\u00A0`: 以 Unicode 码点表示一个字符（不适用于 ASCII 字符，能够表示的范围是`00A0 ~ FFFF`），码点以十六进制表示，`\u`后面需要`四个字符`。
+* `\U00010000`: 以 Unicode 码点表示一个字符（不适用于 ASCII 字符，能够表示的范围是`00010000 ~ 0010FFFF`），码点以十六进制表示，`\U`后面需要`八个字符`。
+```c
+int main(void) {
+    printf("AB\n");         // AB
+    printf("\101\102\n");   // AB
+    printf("\x41\x42\n");   // AB
+    printf("\u8D85\n");     // 超
+    printf("\U00100000\n"); // 􀀀
+}
+```
 
 ## 多字节字符的表示方法
+C 语言预设只有基本字符才能使用字面量表示，其它字符都应该使用码点表示，并且当前系统必须支持该码点的编码方式。
 
+基本字符，指的是所有可打印的 ASCII 码字符，但是`@`、`$`、<code>`</code>这三个字符可以使用码点表示。
+```c
+int main(void) {
+    printf("\u0024\u0040\u0060\n");
+}
+// $@`
+```
+其它 ASCII 字符不能使用码点表示，上文有说到码点小于`A0`的字符。
 
+C 语言允许使用`u8`前缀，对多字节字符串指定编码方式为 UTF-8。
+```c
+int main(void) {
+    setlocale(LC_ALL, "");  // 切换执行环境到系统的本地化语言。
+    char* s = u8"春天";
+    printf("%s\n", s);
+}
+// 春天
+```
 
+一旦字符串里面包含多字节字符，那字符串字节数与字符数不再一一对应。
+```c
+int main(void) {
+    setlocale(LC_ALL, "");
+    char* s = "春天";
+    printf("%d\n", strlen(s));
+}
+
+// 6
+```
+上面示例中，字符串`s`只包含两个字符，但是`strlen()`返回`6`，表示这两个字符占用 6 个字节。
+
+C 语言一些字符串函数只对单字节字符有效，对于多字节字符都会失效。比如`strtok()`、`strchr()`、`strspn()`、`toupper()`、`tolower()`、`isalpha()`。
+
+## 宽字符
+多字节字符，每个字符的字节宽度是可变的。
+
+C 语言还提供了确定宽度的多字节字符存储方式，称为宽字符。即每个字符占用的字节数是固定的，要么是 2 个字节，要么是 4 个字节。
+
+宽字符的数据类型定义为`wchar_t`，属于整数类型的别名。
+
+宽字符的字面量必须加上前缀“L”，否则 C 语言会把字面量当作窄字符类型处理。
+```c
+int main(void) {
+    setlocale(LC_ALL, "");
+
+    wchar_t c = L'牛';   // 单引号表示宽字符。
+    printf("%lc\n", c);
+    wchar_t* s = L"春天"; // 双引号表示宽字符串。
+    printf("%ls\n", s);
+}
+```
+宽字符相关的函数定义在头文件`wchar.h`里面。
+
+## 多字节字符处理函数
+1. `mblen()`
+返回一个多字节字符第一个字符占用的字节数，原型定义在`stdlib.h`里面。
+```c
+int mblen(const char* mbstr, size_t n);
+```
+第一个参数就是多字节字符指针；
+第二个参数是需要检查的字节数，不能大于当前系统单个字符占用的最大字节。
+```c
+int main(void) {
+    setlocale(LC_ALL, "");
+
+    char* mbs1 = "abc";
+    printf("%d\n", mblen(mbs1, MB_CUR_MAX));    // 1
+    char* mbs2 = "春天";
+    printf("%d\n", mblen(mbs2, MB_CUR_MAX));    // 3
+}
+```
+2. `wctomb()`
+作用是将宽字符转为多字节字符，原型定义在`stdlib.h`里面。
+```c
+int wctomb(char* s, wchar_t, wc);
+```
+第一个参数是作为目标的多字节字符数组；
+第二个参数是需要转换的一个宽字符。
+返回值是多字节字符串占用的字节数，失败返回 -1。
+```c
+int main(void) {
+    setlocale(LC_ALL, "");
+
+    wchar_t wc = L'牛';
+    char mbStr[10] = "";
+
+    int nBytes = 0;
+    nBytes = wctomb(mbStr, wc);
+    printf("%d\n", nBytes);     // 3
+    printf("%s\n", mbStr);      // 牛
+}
+```
+3. `mbtowc()`
+作用是将多字节转换为宽字符，原型定义在`stdlib.h`里面。
+```c
+int mbtowc(wchar_t, wchar, const char* mbchar, size_t count);
+```
+4. `wcstombs()`
+作用是将宽字符串转换位多字节字符串。原型定义在`stdlib.h`里面。
+```c
+int wcstombs(char* mbstr, const wchar_t* wcstr, size_t count);
+```
+
+5. `mbstowcs()`
+作用是将多字节字符串转换为宽字符串。原型定义在`stdlib.h`里面。
+```c
+int mbstowcs(wchar_t*, wcstr, char* mbstr, size_t count);
+```
 
 ## 来源
 * [https://wangdoc.com/clang/multibyte.html](https://wangdoc.com/clang/multibyte.html)
