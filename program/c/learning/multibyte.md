@@ -164,18 +164,73 @@ int main(void) {
 3. `mbtowc()`
 作用是将多字节转换为宽字符，原型定义在`stdlib.h`里面。
 ```c
-int mbtowc(wchar_t, wchar, const char* mbchar, size_t count);
+int mbtowc(wchar_t* wchar, const char* mbchar, size_t count);
+```
+第一个参数是作为目标的宽字符指针；
+第二个参数是待转换的多字节字符指针；
+第三个参数是多字节字符的字节数。
+返回值是多字节字符的字节数，失败返回 -1。
+```c
+int main(void) {
+    setlocale(LC_ALL, "");
+    
+    char* mbStr = "牛";
+    wchar_t wc;
+    wchar_t* pwc = &wc;
+    
+    int nBytes = 0;
+    nBytes = mbtowc(pwc, mbStr, 3);
+    
+    printf("%d\n", nBytes);     // 3
+    printf("%lc\n", *pwc);      // 牛
+}
 ```
 4. `wcstombs()`
 作用是将宽字符串转换位多字节字符串。原型定义在`stdlib.h`里面。
 ```c
 int wcstombs(char* mbstr, const wchar_t* wcstr, size_t count);
 ```
+第一个参数是目标多字节字符串指针；
+第二个参数是待转换的宽字符串指针；
+第三个参数存储多字节字符串的最大字节数。
+返回值是多字节字符串的字节数，不包括尾部的字符串终止符，失败则返回 -1。
+```c
+int main(void) {
+    setlocale(LC_ALL, "");
+
+    char mbStrings[20];
+    wchar_t* wcStrings = L"世界";
+
+    int nBytes = 0;
+    nBytes = wcstombs(mbStrings, wcStrings, 20);
+
+    printf("%d\n", nBytes);     // 6
+    printf("%s\n", mbStrings);  // 春天
+}
+```
 
 5. `mbstowcs()`
 作用是将多字节字符串转换为宽字符串。原型定义在`stdlib.h`里面。
 ```c
 int mbstowcs(wchar_t*, wcstr, char* mbstr, size_t count);
+```
+第一个参数是目标宽字符串；
+第二个参数是待转换的多字节字符串；
+第三个参数是存储多字节字符串的最大字节数。
+返回值是成功转换的多字节字符串的字符数量，失败则返回 -1。
+```c
+int main(void) {
+    setlocale(LC_ALL, "");
+
+    char* mbStrings = "天气非常不错";
+    wchar_t wcStrings[20];
+
+    int nCounts = 0;
+    nCounts = mbstowcs(wcStrings, mbStrings, 20);
+
+    printf("%d\n", nCounts);        // 6
+    printf("%ls\n", wcStrings);     // 天气非常不错
+}
 ```
 
 ## 来源
