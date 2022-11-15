@@ -11,6 +11,7 @@
   - [抽象类](#抽象类)
     - [面向抽象编程](#面向抽象编程)
   - [接口](#接口)
+  - [静态属性（字段）和静态方法](#静态属性字段和静态方法)
 
 ## 构造方法
 ```java
@@ -180,3 +181,77 @@ class Student extends Person {
 ### 面向抽象编程
 
 ## 接口
+如果一个抽象类没有属性，所有方法全部都是抽象方法。
+```java
+abstract class Person {
+    public abstract void run();
+    public abstract String getName();
+}
+```
+就可以把抽象类改写为`接口`。
+
+java 使用`interface`可以申明一个接口。
+```java
+interface Person {
+    void run();
+    String getName();
+}
+```
+当一个`class`去实现`interface`，使用关键字`implements`，如下示例。
+
+```java
+class Student implements Person {
+  private String name;
+
+  public Student(String name) {
+    this.name = name;
+  }
+
+  @Override
+  public void run() {
+      System.out.println(this.name + " run");
+  }
+  
+  @Override
+  public String getName() {
+      return this.name;
+  }
+}
+```
+> java 语言中，一个类只能继承自另一个类，不能从多个类继承，但是一个类可以实现多个接口`interface`。
+```java
+class Student implements Person, Hello {
+    // ...
+}
+```
+
+> 同样，接口也可以继承自另一个接口，使用关键字`extends`。
+```java
+interface Hello {
+    void hello();
+}
+
+interface Person extends Hello {
+    void run;
+    String getName();
+}
+```
+
+接口中可以定义`default`方法。
+
+## 静态属性（字段）和静态方法
+静态属性和静态方法属于类，所有实例共享。区别实例属性，各个实例同名属性互不影响。
+
+接口不能定义实例属性，但是可以定义静态属性，且必须是 final 类型。
+```java
+public interface Person {
+    public static final int MALE = 1;
+    public static final int FEMALE = 2;
+}
+
+// 等同于
+public interface Person {
+    int MALE = 1;   // 编译时会自动加上 public static final
+    int FEMALE = 2;
+}
+```
