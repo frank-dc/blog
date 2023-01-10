@@ -12,6 +12,7 @@
     - [面向抽象编程](#面向抽象编程)
   - [接口](#接口)
   - [静态属性（字段）和静态方法](#静态属性字段和静态方法)
+  - [内部类](#内部类)
 
 ## 构造方法
 ```java
@@ -255,3 +256,29 @@ public interface Person {
     int FEMALE = 2;
 }
 ```
+
+## 内部类
+```java
+public class Main {
+    public static void main(String[] args) {
+        Outer outer = new Outer("Nested"); // 实例化一个Outer
+        Outer.Inner inner = outer.new Inner(); // 实例化一个Inner
+        inner.hello();
+    }
+}
+
+class Outer {
+    private String name;
+
+    Outer(String name) {
+        this.name = name;
+    }
+
+    class Inner {
+        void hello() {
+            System.out.println("Hello, " + Outer.this.name);
+        }
+    }
+}
+```
+上述定义的`Outer`是一个普通类，而`Inner`是一个内部类，它与普通类有个最大的不同，就是内部类的实例不能单独存在，必须依附于一个Outer Class的实例。
