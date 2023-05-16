@@ -10,11 +10,11 @@ package org.frank.basic.datatype;
         整数：               占用的内存空间
             byte            1字节
             short           2字节
-            int             4字节
+            int             4字节（默认）
             long            8字节
         浮点数：
             float           4字节
-            double          8字节
+            double          8字节（默认）
         字符：
             char            2字节
         布尔：
