@@ -21,20 +21,20 @@ import java.util.Scanner;
 
 public class IfDemo4 {
     public static void main(String[] args) {
-        //创建键盘录入对象
+        // 创建键盘录入对象
         Scanner sc = new Scanner(System.in);
 
-        //获取键盘录入数据
+        // 获取键盘录入数据
         System.out.println("请输入第一个数据：");
         int a = sc.nextInt();
         System.out.println("请输入第二个数据：");
         int b = sc.nextInt();
 
-        //使用三元运算符实现
+        // 使用三元运算符实现
         int c =  (a > b) ? a : b;
         System.out.println("使用三元运算符获取较大的数值是："+c);
 
-        //使用if语句格式2实现
+        // 使用if语句格式2实现
         int d;
         if(a > b) {
             d = a;
