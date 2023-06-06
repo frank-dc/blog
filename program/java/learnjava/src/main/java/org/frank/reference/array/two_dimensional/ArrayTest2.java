@@ -21,10 +21,19 @@ public class ArrayTest2 {
         // 定义求和变量
         int sum = 0;
 
-        // 遍历二维数组
+        // 遍历二维数组 traditional for loop
+        /*
         for(int x = 0; x < arr.length; x++) {
             for(int y = 0; y < arr[x].length; y++) {
                 sum += arr[x][y];
+            }
+        }
+         */
+
+        // 遍历二维数组 enhanced for loop(for-each)
+        for (int[] ints : arr) {
+            for (int anInt : ints) {
+                sum += anInt;
             }
         }
 
