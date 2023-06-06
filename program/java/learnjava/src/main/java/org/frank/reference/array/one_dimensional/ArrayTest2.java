@@ -1,4 +1,4 @@
-package org.frank.reference;
+package org.frank.reference.array.one_dimensional;
 /*
     获取数组中的最小值和最大值
  */

@@ -1,4 +1,4 @@
-package org.frank.reference.array.one_dimensional
+package org.frank.reference.array.one_dimensional;
 /*
     数组遍历：
         依次输出数组中的每一个元素
