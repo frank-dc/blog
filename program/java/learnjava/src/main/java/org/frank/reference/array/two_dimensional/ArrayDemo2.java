@@ -14,7 +14,7 @@ public class ArrayDemo2 {
             但是我们不知道每个一维数组有多少个元素
          */
 
-        System.out.println(arr);    // [[I@56cbfb61
+        System.out.println(arr.toString());    // [[I@56cbfb61
         System.out.println(arr[0]); // null
         System.out.println(arr[1]); // null
         System.out.println(arr[2]); // null
