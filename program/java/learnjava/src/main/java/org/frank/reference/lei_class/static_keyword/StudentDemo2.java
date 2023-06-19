@@ -31,6 +31,6 @@ public class StudentDemo2 {
         s.show2();  // 静态方法可以被对象调用
 
         Student2.show2();   // 静态方法可以通过类名调用
-//        Student2.show();    // java: 无法从静态上下文中引用非静态 方法 show()
+//        Student2.show();    // Non-static method 'show()' cannot be referenced from a static context
     }
 }
