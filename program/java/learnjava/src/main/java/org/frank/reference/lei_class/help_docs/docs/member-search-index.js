@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"org.frank.reference.lei_class.help_docs","c":"ArrayTool","l":"getMax(int[])"},{"p":"org.frank.reference.lei_class.help_docs","c":"ArrayTool","l":"printArray(int[])"}];updateSearchResults();

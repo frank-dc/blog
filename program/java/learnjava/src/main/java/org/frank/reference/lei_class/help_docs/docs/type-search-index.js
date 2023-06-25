@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"org.frank.reference.lei_class.help_docs","l":"ArrayTool"}];updateSearchResults();
