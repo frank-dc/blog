@@ -10,7 +10,6 @@ package org.frank.reference.lei_class.jicheng_extends;
                 Student, Person     可以继承
                 Dog, Animal         可以继承
                 Dog, Pig            不可以继承
-
  */
 class Parent {
     private int num = 10;
