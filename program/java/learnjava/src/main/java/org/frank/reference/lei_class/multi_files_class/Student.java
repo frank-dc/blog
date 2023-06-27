@@ -1,4 +1,4 @@
-package org.frank.reference.lei_class.multi_files;
+package org.frank.reference.lei_class.multi_files_class;
 
 public class Student {
     // 成员变量

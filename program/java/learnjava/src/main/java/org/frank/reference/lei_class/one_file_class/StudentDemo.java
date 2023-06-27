@@ -1,4 +1,4 @@
-package org.frank.reference.lei_class.one_file;
+package org.frank.reference.lei_class.one_file_class;
 /*
     一个.java文件可以有多个类
 
@@ -14,8 +14,6 @@ package org.frank.reference.lei_class.one_file;
     注意：
         引用类型的默认值是null
  */
-
-import java.sql.Struct;
 
 class Student {
     // 成员变量
