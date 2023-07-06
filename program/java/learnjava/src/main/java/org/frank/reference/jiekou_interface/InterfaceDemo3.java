@@ -1,4 +1,4 @@
-package org.frank.reference.lei_class.jiekou_interface;
+package org.frank.reference.jiekou_interface;
 /*
     类与类：
         继承关系，只能单继承。可以多层继承。

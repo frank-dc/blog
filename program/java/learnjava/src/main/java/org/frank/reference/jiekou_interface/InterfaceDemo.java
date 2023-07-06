@@ -1,4 +1,4 @@
-package org.frank.reference.lei_class.jiekou_interface;
+package org.frank.reference.jiekou_interface;
 /*
     接口概述：现在在动物园里面，有些猫可以钻火圈，狗跳高，做计算等东西；
             而这些行为并不是动物天生就具备的，所以，不适合定义在动物类中；

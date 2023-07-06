@@ -1,4 +1,4 @@
-package org.frank.reference.lei_class.jiekou_interface;
+package org.frank.reference.jiekou_interface;
 /*
     老师和学生的案例，加入抽烟的额外行为。
 

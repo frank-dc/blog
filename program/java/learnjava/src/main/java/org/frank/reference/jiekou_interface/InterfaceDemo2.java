@@ -1,4 +1,4 @@
-package org.frank.reference.lei_class.jiekou_interface;
+package org.frank.reference.jiekou_interface;
 /*
     接口的成员特点：
         1. 成员变量
