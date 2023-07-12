@@ -37,7 +37,7 @@ class AbstractClassDemo {
     }
 }
 
-// 接口
+// 接口（interface）
 interface Interface {
     public abstract void show();
 }
