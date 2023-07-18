@@ -1,4 +1,4 @@
-package org.frank.reference.object_class.p2;
+package org.frank.reference.special_class.Object.p2;
 
 public class Student {
     private String name;

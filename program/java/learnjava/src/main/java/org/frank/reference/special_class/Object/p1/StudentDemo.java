@@ -1,4 +1,4 @@
-package org.frank.reference.object_class.p1;
+package org.frank.reference.special_class.Object.p1;
 /*
     Object: 是类层次结构的根类，所有类都直接或者间接的继承自该类。
 

@@ -1,4 +1,4 @@
-package org.frank.reference.object_class.p2;
+package org.frank.reference.special_class.Object.p2;
 /*
     public boolean equals(Object obj): 比较对象是否相等
 

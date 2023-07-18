@@ -1,4 +1,4 @@
-package org.frank.reference.object_class.p3;
+package org.frank.reference.special_class.Object.p3;
 
 public class StudentDemo {
     public static void main(String[] args) throws CloneNotSupportedException {

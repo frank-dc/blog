@@ -1,10 +1,7 @@
-package org.frank.reference.object_class.p3;
+package org.frank.reference.special_class.Object.p1;
 
-/*
-    在使用克隆的时候，报错CloneNotSupportedException
-    原因是因为我们要实现一个接口Cloneable
- */
-public class Student implements Cloneable {
+// public class Student extends Object: 这种继承是默认存在的
+public class Student {
     private String name;
     private int age;
 
@@ -35,7 +32,7 @@ public class Student implements Cloneable {
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
+    public String toString() {
+        return "Student [name=" + name + ", age=" + age + "]";
     }
 }
