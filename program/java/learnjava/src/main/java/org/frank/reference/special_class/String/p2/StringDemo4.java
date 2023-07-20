@@ -13,7 +13,6 @@ public class StringDemo4 {
 
         System.out.println(s4);
         System.out.println(s5);
-
         System.out.println(s3 == s1 + s2);              // false
         System.out.println(s3 == "hello" + "world");    // true
         System.out.println(s3.equals(s1 + s2));         // true
