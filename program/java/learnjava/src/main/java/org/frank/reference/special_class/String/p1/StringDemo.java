@@ -19,7 +19,7 @@ package org.frank.reference.special_class.String.p1;
 
     面试题：
   		数组有length()吗?String有length()吗？
-  		没有。数组有size()
+  		没有。有属性length
   		有。
  */
 public class StringDemo {
