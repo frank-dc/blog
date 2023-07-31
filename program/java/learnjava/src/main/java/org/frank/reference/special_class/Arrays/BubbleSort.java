@@ -1,6 +1,7 @@
 package org.frank.reference.special_class.Arrays;
 /*
-    冒泡排序：每次遍历（长度递减），把最大的项排到最后。
+    冒泡排序：每次遍历（长度递减），相邻两个比较，最大的项排到最后。
+    从后往前推移
  */
 public class BubbleSort {
     public static void main(String[] args) {
