@@ -1,4 +1,4 @@
-package org.frank.reference.lei_class.contruction;
+package org.frank.reference.lei_class.structure;
 /*
     构造方法：给对象的变量进行初始化。
 

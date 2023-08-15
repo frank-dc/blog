@@ -1,4 +1,4 @@
-package org.frank.reference.lei_class.contruction;
+package org.frank.reference.lei_class.structure;
 
 
 class Phone {
