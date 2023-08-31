@@ -1,4 +1,4 @@
-package org.frank.reference.special_class.StringBuffer.p1;
+package org.frank.reference.special_class.StringBuffer.init;
 /*
     StringBuffer: 线程安全的可变字符串。可以改变内容和长度。
 
