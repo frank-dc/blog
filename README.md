@@ -17,6 +17,7 @@
     - [1. Ansible](#1-ansible)
     - [2. CI/CD](#2-cicd)
   - [Program](#program)
+    - [1. 基础](#1-基础)
     - [2. Python](#2-python)
       - [算法](#算法)
       - [闭包](#闭包)
@@ -30,6 +31,7 @@
 * [set 命令](program/shell/the_use_of_set_command.md)
 
 ### 2. CPU
+* [如何排查CPU持续飙高？](linux/cpu/how_to_troubleshooting_high_cpu.md)
 
 ### 3. Memory
 
@@ -67,7 +69,9 @@
 
 
 ## Program
+### 1. 基础
 * [计算机对浮点数的表示](program/understanding_float_point.md)
+* [原码、反码和补码](program/原码、反码和补码.md)
 
 ### 2. Python
 #### 算法
