@@ -1,4 +1,6 @@
-## while 循环
+# while 循环
+- [while 循环](#while-循环)
+
 ```shell
 # 定义一个数组
 fruits=(apple banana cherry)
