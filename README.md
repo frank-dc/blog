@@ -73,6 +73,7 @@
 * [计算机对浮点数的表示](program/%E7%90%86%E8%A7%A3%E6%B5%AE%E7%82%B9%E6%95%B0.md)
 * [原码、反码和补码](program/%E5%8E%9F%E7%A0%81%E3%80%81%E5%8F%8D%E7%A0%81%E5%92%8C%E8%A1%A5%E7%A0%81.md)
 * [进程间通信](program/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1.md)
+* [Buffer和Cache的区别](program/Buffer和Cache的区别.md)
 
 ### 2. Python
 #### 算法
