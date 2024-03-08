@@ -2,6 +2,8 @@
 - [socket 网络模型的 I/O 多路复用](#socket-网络模型的-io-多路复用)
   - [概括](#概括)
   - [来源](#来源)
+  - [进一步了解](#进一步了解)
+
 ## 概括
 最基础的 TCP 的 socket 编程，它是阻塞 I/O 模型，基本上只能一对一通信，为了服务更多的客户端，我们需要改进网络 I/O 模型。
 
@@ -31,7 +33,8 @@ epoll 支持边缘触发[^2]和水平触发[^3]两种触发的方式，select/po
 
 [^3]: 当被监控的 Socket 上有可读事件发生时，服务器端不断地从 epoll_wait 中苏醒，直到内核缓冲区数据被 read 函数读完才结束，目的是告诉我们有数据需要读取。
 
-
-
 ## 来源
 * [https://bbs.huaweicloud.com/blogs/279731](https://bbs.huaweicloud.com/blogs/279731)
+
+## 进一步了解
+[https://www.junmajinlong.com/coding/IO_Model/](https://www.junmajinlong.com/coding/IO_Model/)
