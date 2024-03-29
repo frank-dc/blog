@@ -79,7 +79,7 @@
 #### 算法
 > 排序
 * [快速排序](program/python/algorithm/sort/quick_sort)
-* [冒泡排序](program/python/algorithm/sort/dubble_sort)
+* [冒泡排序](program/python/algorithm/sort/bubble_sort)
 * [选择排序](program/python/algorithm/sort/selection_sort)
 * [插入排序](program/python/algorithm/sort/insertion_sort)
 

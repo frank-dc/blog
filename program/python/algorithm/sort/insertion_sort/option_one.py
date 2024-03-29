@@ -1,4 +1,4 @@
-def insertion_sort(array):
+def main(array):
     for i in range(1, len(array)):
         j = i
         while j > 0 and array[j - 1] > array[i]:
@@ -10,4 +10,4 @@ def insertion_sort(array):
 
 if __name__ == '__main__':
     data = [0, 4, 0, 10, 10, 8, 2, 6, 4, 2]
-    print(insertion_sort(data))
+    print(main(data))
