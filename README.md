@@ -46,6 +46,8 @@
 
 ### 6. IO
 * [socket 网络模型的 I/O 多路复用](linux/io/socket%20%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E7%9A%84%20IO%20%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8.md)
+* [DMA拷贝](linux/io/DMA拷贝.md)
+* [零拷贝技术](linux/io/零拷贝技术.md)
 
 ### 7. Package
 * [如何创建一个 rpm 包？](linux/package/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%20RPM%20%E5%8C%85.md)
