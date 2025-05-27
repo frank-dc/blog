@@ -40,6 +40,9 @@
 
 ### 2. CPU
 * [如何排查CPU持续飙高？](linux/cpu/%E5%A6%82%E4%BD%95%E6%8E%92%E6%9F%A5CPU%E6%8C%81%E7%BB%AD%E9%A3%99%E9%AB%98.md)
+* [中断](linux/cpu/中断.md)
+* [CPU负载高排查](linux/cpu/CPU负载高排查.md)
+* [CPU利用率高排查](linux/cpu/CPU利用率高排查.md)
 
 ### 3. Memory
 
@@ -56,6 +59,7 @@
 * [socket 网络模型的 I/O 多路复用](linux/io/socket%20%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E7%9A%84%20IO%20%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8.md)
 * [DMA拷贝](linux/io/DMA拷贝.md)
 * [零拷贝技术](linux/io/零拷贝技术.md)
+* [同步异步阻塞非阻塞区别](linux/io/同步异步阻塞非阻塞区别.md)
 
 ### 7. Package
 * [如何创建一个 rpm 包？](linux/package/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%20RPM%20%E5%8C%85.md)
@@ -87,6 +91,9 @@
 
 ### 2. Python
 #### 算法
+> 多叉树
+* [广度优先搜索](program/python/algorithm/multi-branch-tree/bfs.py)
+* [深度优先搜索](program/python/algorithm/multi-branch-tree/dfs.py)
 > 排序
 * [快速排序](program/python/algorithm/sort/quick_sort)
 * [冒泡排序](program/python/algorithm/sort/bubble_sort)
