@@ -39,7 +39,6 @@
 * [set 命令](program/shell/set%20%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8.md)
 
 ### 2. CPU
-* [如何排查CPU持续飙高？](linux/cpu/%E5%A6%82%E4%BD%95%E6%8E%92%E6%9F%A5CPU%E6%8C%81%E7%BB%AD%E9%A3%99%E9%AB%98.md)
 * [中断](linux/cpu/中断.md)
 * [CPU负载高排查](linux/cpu/CPU负载高排查.md)
 * [CPU利用率高排查](linux/cpu/CPU利用率高排查.md)
